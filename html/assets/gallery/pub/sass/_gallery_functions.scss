@@ -1,0 +1,30 @@
+
+// расчет максимальной ширины галереи с учетом отступа родителя
+@function _calcGalMaxWidth($galMaxWidth, $parentPadding) {
+	
+	@return (($galMaxWidth - $parentPadding * 2) * 1px);
+
+};
+
+
+// расчет ширины одного блока
+@function _calcGalBoxWidth($boxMLeft, $boxesNumber, $galMaxWidth, $parentPadding) {
+
+	$totalMargin: $boxMLeft * $boxesNumber;
+
+	$galMaxWidth: $galMaxWidth - $parentPadding * 2;
+
+	$galBoxWidth: (($galMaxWidth - $totalMargin) / $boxesNumber) / $galMaxWidth;
+
+	@return ($galBoxWidth * 100%);
+
+};
+
+
+// перевод левого отступа бокса в проценты
+@function _calcGalBoxMLeft($boxMLeft, $galMaxWidth, $parentPadding) {
+
+	@return ($boxMLeft / ($galMaxWidth - $parentPadding * 2)) * 100%;
+
+};
+

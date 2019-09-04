@@ -1,0 +1,199 @@
+
+
+// миксины, расчетные значения и другие плюхи галереи
+
+// РАСЧЕТНЫЕ ДАННЫЕ, МИКСИНЫ И ДР:
+
+// *********** базовое разрешение десктопы от 1366 и выше ------------------------------------------------------------------------------------------------------------------------
+$gallery-calc-large-resolution: (
+
+  'j-gallery-max-width' : _calcGalMaxWidth(map-get($gallery-large-resolution, 'gallery-max-width'), map-get($gallery-large-resolution, 'parent-padding')),
+  
+  'j-gallery-box-width' : _calcGalBoxWidth(map-get($gallery-large-resolution, 'box-margin-left'), map-get($gallery-large-resolution, 'boxes-number'), map-get($gallery-large-resolution, 'gallery-max-width'), map-get($gallery-large-resolution, 'parent-padding')),
+  
+  'j-gallery-box-margin-left' : _calcGalBoxMLeft(map-get($gallery-large-resolution, 'box-margin-left'), map-get($gallery-large-resolution, 'gallery-max-width'), map-get($gallery-large-resolution, 'parent-padding')),
+ 
+);
+// миксин для ширины галереи, максимальной ширины и при необходимости центрирования
+@mixin mix-j-gallery_large-resolution {
+  
+  width: map-get($gallery-large-resolution, 'j-gallery-width');
+  
+  max-width: map-get($gallery-calc-large-resolution, 'j-gallery-max-width');
+
+  @if(map-get($gallery-large-resolution, 'j-central')) {
+        margin: 0 auto;
+  };
+
+};
+// миксин для отрицательного отступа и ширины внутренней обертки с учетом отриц. отступа
+@mixin mix-j-gallery__wrap_large-resolution {
+
+  margin-left: -1 * map-get($gallery-calc-large-resolution, 'j-gallery-box-margin-left');
+
+  width: calc(100% + #{map-get($gallery-calc-large-resolution, 'j-gallery-box-margin-left')});
+
+};
+// миксин для ширины бокса
+@mixin mix-j-gallery__box_large-resolution {
+
+  width: map-get($gallery-calc-large-resolution, 'j-gallery-box-width');;
+  
+  margin: 0 0 map-get($gallery-large-resolution, 'j-box-margin-bottom') map-get($gallery-calc-large-resolution, 'j-gallery-box-margin-left');
+
+};
+// -------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+// ********* среднее разрешение (нетбуки, планшеты) --------------------------------------------------------------------------------------------------------------------------
+$gallery-calc-medium-resolution: (
+
+  'j-gallery-max-width' : _calcGalMaxWidth(map-get($gallery-medium-resolution, 'gallery-max-width'), map-get($gallery-medium-resolution, 'parent-padding')),
+  
+  'j-gallery-box-width' : _calcGalBoxWidth(map-get($gallery-medium-resolution, 'box-margin-left'), map-get($gallery-medium-resolution, 'boxes-number'), map-get($gallery-medium-resolution, 'gallery-max-width'), map-get($gallery-medium-resolution, 'parent-padding')),
+  
+  'j-gallery-box-margin-left' : _calcGalBoxMLeft(map-get($gallery-medium-resolution, 'box-margin-left'), map-get($gallery-medium-resolution, 'gallery-max-width'), map-get($gallery-medium-resolution, 'parent-padding')),
+ 
+);
+// миксин для ширины галереи, максимальной ширины и при необходимости центрирования
+@mixin mix-j-gallery_medium-resolution {
+   
+   @media ( max-width:map-get($gallery-medium-resolution, 'screen-width')) {
+      
+      width: map-get($gallery-medium-resolution, 'j-gallery-width');
+      max-width: map-get($gallery-calc-medium-resolution, 'j-gallery-max-width');
+
+   };
+ 
+   @if(map-get($gallery-medium-resolution, 'j-central')) {
+
+      margin: 0 auto;
+
+   };
+
+};
+// миксин для отрицательного отступа и ширины внутренней обертки с учетом отриц. отступа
+@mixin mix-j-gallery__wrap_medium-resolution {
+
+  @media (max-width:map-get($gallery-medium-resolution, 'screen-width')) {
+      
+      margin-left: -1 * map-get($gallery-calc-medium-resolution, 'j-gallery-box-margin-left');
+      width: calc(100% + #{map-get($gallery-calc-medium-resolution, 'j-gallery-box-margin-left')});
+
+  };
+
+};
+// миксин для ширины бокса
+@mixin mix-j-gallery__box_medium-resolution {
+
+    @media (max-width:map-get($gallery-medium-resolution, 'screen-width')) {
+
+      width: map-get($gallery-calc-medium-resolution, 'j-gallery-box-width');
+      margin: 0 0 map-get($gallery-medium-resolution, 'j-box-margin-bottom') map-get($gallery-calc-medium-resolution, 'j-gallery-box-margin-left');
+    
+    };
+
+};
+// ----------------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+
+
+// ************** маленькое разрешение (смартфоны) ------------------------------------------------------------------------------------------------------------------
+$gallery-calc-small-resolution: (
+
+  'j-gallery-max-width' : _calcGalMaxWidth(map-get($gallery-small-resolution, 'gallery-max-width'), map-get($gallery-small-resolution, 'parent-padding')),
+  
+  'j-gallery-box-width' : _calcGalBoxWidth(map-get($gallery-small-resolution, 'box-margin-left'), map-get($gallery-small-resolution, 'boxes-number'), map-get($gallery-small-resolution, 'gallery-max-width'), map-get($gallery-small-resolution, 'parent-padding')),
+  
+  'j-gallery-box-margin-left' : _calcGalBoxMLeft(map-get($gallery-small-resolution, 'box-margin-left'), map-get($gallery-small-resolution, 'gallery-max-width'), map-get($gallery-small-resolution, 'parent-padding')),
+ 
+);
+// миксин для ширины галереи, максимальной ширины и при необходимости центрирования
+@mixin mix-j-gallery_small-resolution {
+
+  @media (max-width:map-get($gallery-small-resolution, 'screen-width')) {
+
+    width: map-get($gallery-small-resolution, 'j-gallery-width');
+    max-width: map-get($gallery-calc-small-resolution, 'j-gallery-max-width');
+
+  };
+
+  @if(map-get($gallery-small-resolution, 'j-central')) {
+        margin: 0 auto;
+  };
+
+};
+// миксин для отрицательного отступа и ширины внутренней обертки с учетом отриц. отступа
+@mixin mix-j-gallery__wrap_small-resolution {
+
+  @media (max-width:map-get($gallery-small-resolution, 'screen-width')) {
+
+      margin-left: -1 * map-get($gallery-calc-small-resolution, 'j-gallery-box-margin-left');
+      width: calc(100% + #{map-get($gallery-calc-small-resolution, 'j-gallery-box-margin-left')});
+
+  };
+
+};
+// миксин для ширины бокса
+@mixin mix-j-gallery__box_small-resolution {
+
+    @media (max-width:map-get($gallery-small-resolution, 'screen-width')) {
+
+      width: map-get($gallery-calc-small-resolution, 'j-gallery-box-width');;
+      margin: 0 0 map-get($gallery-small-resolution, 'j-box-margin-bottom') map-get($gallery-calc-small-resolution, 'j-gallery-box-margin-left');
+    
+    };
+
+};
+// ---------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+// ************** 1ое дополнительное разрешение (по необходимости) -----------------------------------------------------------------------------
+$gallery-calc-add-resolution-1: (
+
+  'j-gallery-max-width' : _calcGalMaxWidth(map-get($gallery-add-resolution-1, 'gallery-max-width'), map-get($gallery-add-resolution-1, 'parent-padding')),
+  
+  'j-gallery-box-width' : _calcGalBoxWidth(map-get($gallery-add-resolution-1, 'box-margin-left'), map-get($gallery-add-resolution-1, 'boxes-number'), map-get($gallery-add-resolution-1, 'gallery-max-width'), map-get($gallery-add-resolution-1, 'parent-padding')),
+  
+  'j-gallery-box-margin-left' : _calcGalBoxMLeft(map-get($gallery-add-resolution-1, 'box-margin-left'), map-get($gallery-add-resolution-1, 'gallery-max-width'), map-get($gallery-add-resolution-1, 'parent-padding')),
+ 
+);
+// миксин для ширины галереи, максимальной ширины и при необходимости центрирования
+@mixin mix-j-gallery_add-resolution-1 {
+   
+  @media (max-width:map-get($gallery-add-resolution-1, 'screen-width')) { 
+
+      width: map-get($gallery-add-resolution-1, 'j-gallery-width');
+      max-width: map-get($gallery-calc-add-resolution-1, 'j-gallery-max-width');
+
+  };
+
+  @if(map-get($gallery-add-resolution-1, 'j-central')) {
+        margin: 0 auto;
+  };
+
+};
+// миксин для отрицательного отступа и ширины внутренней обертки с учетом отриц. отступа
+@mixin mix-j-gallery__wrap_add-resolution-1 {
+  
+  @media (max-width:map-get($gallery-add-resolution-1, 'screen-width')) { 
+
+    margin-left: -1 * map-get($gallery-calc-add-resolution-1, 'j-gallery-box-margin-left');
+    width: calc(100% + #{map-get($gallery-calc-add-resolution-1, 'j-gallery-box-margin-left')});
+
+  };
+
+};
+// миксин для ширины бокса
+@mixin mix-j-gallery__box_add-resolution-1 {
+  
+  @media (max-width:map-get($gallery-add-resolution-1, 'screen-width')) { 
+   
+    width: map-get($gallery-calc-add-resolution-1, 'j-gallery-box-width');;
+    margin: 0 0 map-get($gallery-add-resolution-1, 'j-box-margin-bottom') map-get($gallery-calc-add-resolution-1, 'j-gallery-box-margin-left');
+  
+  };
+};
+// -----------------------------------------------------------------------------------------------------------------------
