@@ -194,9 +194,9 @@ jQuery(function($) {
 
 
     //Pretty Photo
-    $("a[rel^='prettyPhoto']").prettyPhoto({
-        social_tools: false
-    });
+    // $("a[rel^='prettyPhoto']").prettyPhoto({
+    //     social_tools: false
+    // });
 
     //Google Map
     var latitude = $('#google-map').data('latitude');
